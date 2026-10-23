@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CameraIcon } from "@/components/icons";
 import { LearningArt } from "@/components/illustrations/learning";
 import type { GalleryItem } from "@/content/types";
+import { assetPath } from "@/lib/paths";
 
 export function kindLabel(item: GalleryItem): string {
   if (item.kind === "photo") return "Photo";
@@ -21,7 +22,7 @@ export function mediaBackground(item: GalleryItem): string {
 /** Tile-sized artwork for the grid. */
 export function TileMedia({ item }: { item: GalleryItem }) {
   if (item.kind === "photo") {
-    return <Image src={item.src} alt="" width={item.width} height={item.height} loading="lazy" sizes="(min-width: 1081px) 25vw, (min-width: 641px) 33vw, 50vw" />;
+    return <Image src={assetPath(item.src)} alt="" width={item.width} height={item.height} loading="lazy" sizes="(min-width: 1081px) 25vw, (min-width: 641px) 33vw, 50vw" />;
   }
   if (item.kind === "placeholder") {
     return (
@@ -41,7 +42,7 @@ export function TileMedia({ item }: { item: GalleryItem }) {
 /** Large artwork for the lightbox. */
 export function LightboxMedia({ item }: { item: GalleryItem }) {
   if (item.kind === "photo") {
-    return <Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes="100vw" />;
+    return <Image src={assetPath(item.src)} alt={item.alt} width={item.width} height={item.height} sizes="100vw" />;
   }
   if (item.kind === "placeholder") {
     return (

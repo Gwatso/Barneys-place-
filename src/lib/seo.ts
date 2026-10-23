@@ -15,16 +15,18 @@ export function pageMetadata(key: PageKey): Metadata {
   return {
     title,
     description: page.description,
-    alternates: site.siteUrl ? { canonical: page.path } : undefined,
+    // Absolute URLs: a relative path would resolve against the domain root and
+    // drop any sub-path in the site URL (e.g. a GitHub Pages project site).
+    alternates: site.siteUrl ? { canonical: `${site.siteUrl}${page.path}` } : undefined,
     openGraph: {
       type: "website",
       locale: "en_ZW",
       siteName: school.plainName,
       title: fullTitle,
       description: page.description,
-      url: site.siteUrl ? page.path : undefined,
+      url: site.siteUrl ? `${site.siteUrl}${page.path}` : undefined,
       images: site.siteUrl
-        ? [{ url: "/og-image.png", width: 1200, height: 630, alt: `${school.plainName} — Early Childhood Development Centre, Aerodrome Medium, Bindura` }]
+        ? [{ url: `${site.siteUrl}/og-image.png`, width: 1200, height: 630, alt: `${school.plainName} — Early Childhood Development Centre, Aerodrome Medium, Bindura` }]
         : undefined,
     },
     twitter: { card: site.siteUrl ? "summary_large_image" : "summary", title: fullTitle, description: page.description },

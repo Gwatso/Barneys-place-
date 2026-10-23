@@ -8,6 +8,7 @@
  *   NEXT_PUBLIC_DEMO_MODE        "false" turns owner-preview mode off (default: on)
  *   NEXT_PUBLIC_SITE_URL         the confirmed public domain (default: unknown)
  *   NEXT_PUBLIC_ENQUIRY_ENDPOINT an approved form-delivery URL (default: none)
+ *   NEXT_PUBLIC_BASE_PATH        sub-path the site is served from, e.g. "/Barneys-place-" (default: root)
  */
 
 function readFlag(value: string | undefined, fallback: boolean): boolean {
@@ -24,6 +25,11 @@ function readUrl(value: string | undefined): string | null {
   } catch {
     return null;
   }
+}
+
+function readBasePath(value: string | undefined): string {
+  const trimmed = value?.trim().replace(/^\/+|\/+$/g, "") ?? "";
+  return trimmed ? `/${trimmed}` : "";
 }
 
 const demoMode = readFlag(process.env.NEXT_PUBLIC_DEMO_MODE, true);
@@ -48,6 +54,8 @@ export const site = {
     : enquiryEndpoint
       ? { kind: "endpoint", url: enquiryEndpoint }
       : { kind: "none" }) as EnquiryDelivery,
+  /** Sub-path the site is served from ("" at a domain root). Must match next.config.ts. */
+  basePath: readBasePath(process.env.NEXT_PUBLIC_BASE_PATH),
   /** Show Pip, the proposed mascot, in illustrations. */
   showMascot: true,
 } as const;

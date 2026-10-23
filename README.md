@@ -51,6 +51,7 @@ environment variables (see [`.env.example`](.env.example)):
 | `NEXT_PUBLIC_DEMO_MODE` | `true` | Owner-preview bar, "Proposed" tags, sample copy, gallery placeholders, demo-only enquiry form, `noindex` everywhere |
 | `NEXT_PUBLIC_SITE_URL` | empty | Once the real domain is known: canonical URLs, Open Graph image, XML sitemap |
 | `NEXT_PUBLIC_ENQUIRY_ENDPOINT` | empty | Approved form-delivery URL, used only when demo mode is off |
+| `NEXT_PUBLIC_BASE_PATH` | empty | Sub-path the site is served from, e.g. `/Barneys-place-` on GitHub Pages; set automatically by the Pages workflow |
 
 **To leave preview mode**, build with `NEXT_PUBLIC_DEMO_MODE=false`
 (for example in a `.env.production.local` file or your host's build settings).
@@ -121,14 +122,34 @@ Then delete the placeholder it replaces. Photos without
 
 ## Deployment
 
+### GitHub Pages (owner preview)
+
+[`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)
+builds and publishes the site on every push to the repository's default
+branch (or on demand from the Actions tab → "Deploy to GitHub Pages" → Run
+workflow). It runs lint, type checks and unit tests first, and takes the base
+path from GitHub, so the site works under `https://<owner>.github.io/<repo>/`.
+
+One-time setup: **Settings → Pages → Build and deployment → Source:
+GitHub Actions.** The preview is then at
+**https://gwatso.github.io/Barneys-place-/**.
+
+The workflow builds in owner-preview mode (preview bar, "Proposed" tags,
+`noindex`). Anyone with the address can open it, but search engines are asked
+not to list it. Change `NEXT_PUBLIC_DEMO_MODE` in the workflow to `"false"`
+only after the owners approve the content.
+
+### Other static hosts
+
 `npm run build` produces a static site in `out/` that can be uploaded to any
-static host (Netlify, Cloudflare Pages, GitHub Pages, cPanel hosting, S3...).
-Routes use trailing slashes (`/about/` → `out/about/index.html`).
+static host (Netlify, Cloudflare Pages, cPanel hosting, S3...). Routes use
+trailing slashes (`/about/` → `out/about/index.html`). For a site at a domain
+root leave `NEXT_PUBLIC_BASE_PATH` empty.
 
 - `public/_headers` sets security headers on Netlify/Cloudflare Pages; mirror
-  them on other hosts. Add the enquiry endpoint's origin to `connect-src` if one
-  is configured.
-- Do not deploy publicly until the owners have approved the content and
+  them on other hosts (GitHub Pages does not support custom headers). Add the
+  enquiry endpoint's origin to `connect-src` if one is configured.
+- Do not launch publicly until the owners have approved the content and
   `NEXT_PUBLIC_DEMO_MODE=false` is set.
 
 ## Project structure
