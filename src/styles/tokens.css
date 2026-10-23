@@ -1,0 +1,144 @@
+/*
+ * Barney's Place design tokens (proposed brand, pending owner approval).
+ * Colours are digital approximations of the school banner.
+ *
+ * Breakpoints (media queries cannot read custom properties, so they are
+ * written as literals throughout the stylesheets):
+ *   sm  ≥ 641px   tablet
+ *   md  ≥ 961px   desktop navigation
+ *   lg  ≥ 1081px  wide desktop layouts
+ */
+:root {
+  /* Brand */
+  --berry: #c62d3a;
+  --berry-hover: #b42733;
+  --berry-dark: #8e1f29;
+  --berry-ink: #a8222f;
+  --berry-tint: #fce3e5;
+  --berry-soft: #ffe9eb;
+
+  --magenta: #bd2878;
+  --magenta-dark: #a82169;
+  --magenta-ink: #a01f63;
+  --magenta-tint: #fbe6f0;
+  --magenta-soft: #ffe8f2;
+
+  --leaf: #269d58;
+  --leaf-light: #3dba6e;
+  --leaf-deep: #1e7f47;
+  --leaf-hover: #1a7340;
+  --leaf-shadow: #13542f;
+  --forest: #1a6b3c;
+  --leaf-tint: #e6f5eb;
+  --leaf-pale: #bfe5c9;
+  --leaf-mist: #d7efdf;
+
+  --sun: #f4c542;
+  --sun-hover: #f7d063;
+  --sun-dark: #b98e1b;
+  --sun-ink: #8a6410;
+  --sun-tint: #fff4d6;
+  --sun-glow: #fce9c0;
+
+  --teal: #13807a;
+  --teal-tint: #ddf1ef;
+
+  --cream: #fff9ef;
+  --white: #ffffff;
+  --charcoal: #29313b;
+  --charcoal-tint: #eceef1;
+
+  /* Text */
+  --text: #29313b;
+  --text-soft: #3a434e;
+  --text-muted: #4a535f;
+  --text-subtle: #5a6370;
+  --text-on-dark: #e7eaee;
+  --text-on-dark-muted: #c3c9d1;
+
+  /* Lines and surfaces */
+  --line: #f1e6d2;
+  --line-strong: #cfc6b6;
+  --wall: #d6c4a0;
+  --disabled-bg: #e4ded3;
+
+  /* Semantic */
+  --success: #1e7f47;
+  --success-tint: #e6f5eb;
+  --info: #2a6fb0;
+  --info-ink: #1f5487;
+  --info-tint: #e8f0f8;
+  --notice-ink: #6b4e0c;
+  --notice-tint: #fff4d6;
+  --error: #b42318;
+  --error-ink: #8c1c13;
+  --error-tint: #fff6f5;
+
+  /* Typography */
+  --font-display: "Fredoka Variable", "Fredoka", "Nunito Sans Variable", system-ui, sans-serif;
+  --font-body: "Nunito Sans Variable", "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-xs: 0.8125rem; /* 13 */
+  --text-sm: 0.9375rem; /* 15 */
+  --text-base: 1.0625rem; /* 17 */
+  --text-lg: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem); /* 18–21 */
+  --h1: clamp(2.6rem, 1.6rem + 4.6vw, 5.6rem);
+  --h1-hero: clamp(3rem, 1.4rem + 7.4vw, 7.6rem);
+  --h2: clamp(2.1rem, 1.5rem + 2.6vw, 3.6rem);
+  --h3: clamp(1.4rem, 1.2rem + 0.8vw, 1.875rem);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --space-11: 96px;
+  --section-pad: clamp(64px, 4rem + 4vw, 120px);
+  --container: 1280px;
+  --gutter: 20px;
+
+  /* Radii */
+  --radius-xs: 12px;
+  --radius-sm: 18px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-lift: 0 18px 30px -18px rgba(41, 49, 59, 0.45);
+  --shadow-panel: 0 8px 0 var(--charcoal);
+  --focus-ring: 3px solid var(--info);
+  --focus-halo: 0 0 0 4px rgba(42, 111, 176, 0.22);
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-reveal: 400ms;
+  --ease: ease;
+  --ease-spring: cubic-bezier(0.2, 1.4, 0.4, 1);
+
+  /* Layers */
+  --z-header: 50;
+  --z-sticky: 60;
+  --z-dialog: 100;
+}
+
+@media (min-width: 641px) {
+  :root {
+    --gutter: 24px;
+  }
+}
+
+/* Accent themes for data-driven components (learning areas, values...). */
+.accent-berry { --accent: var(--berry); --accent-ink: var(--berry-ink); --accent-tint: var(--berry-tint); --on-accent: var(--white); }
+.accent-magenta { --accent: var(--magenta); --accent-ink: var(--magenta-ink); --accent-tint: var(--magenta-tint); --on-accent: var(--white); }
+.accent-leaf { --accent: var(--leaf-deep); --accent-ink: var(--leaf-deep); --accent-tint: var(--leaf-tint); --on-accent: var(--white); }
+.accent-sun { --accent: var(--sun); --accent-ink: var(--sun-ink); --accent-tint: var(--sun-tint); --on-accent: var(--charcoal); }
+.accent-teal { --accent: var(--teal); --accent-ink: var(--teal); --accent-tint: var(--teal-tint); --on-accent: var(--white); }
+.accent-charcoal { --accent: var(--charcoal); --accent-ink: var(--charcoal); --accent-tint: var(--charcoal-tint); --on-accent: var(--sun); }
