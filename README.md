@@ -13,6 +13,52 @@ content for the public launch.
 - Original inline SVG illustrations; no stock or AI photographs
 - No analytics, trackers, cookies or third-party scripts
 
+**Live preview:** https://gwatso.github.io/Barneys-place-/
+
+## Screenshots
+
+Captured from the working site in owner-preview mode. Wording marked
+"Proposed" is sample copy awaiting the owners' approval, and the enquiry form
+is a demonstration that sends nothing.
+
+### Home
+
+![Home page: "Little Steps. Big Discoveries." with an illustrated storybook scene](docs/screenshots/home.png)
+
+![Learning experiences: six learning areas as colourful cards](docs/screenshots/home-learning-experiences.png)
+
+![A Day Full of Little Discoveries: five stepping stones through a sample day](docs/screenshots/home-day-of-discoveries.png)
+
+### About Us
+
+![Proposed mission and vision statements](docs/screenshots/about-mission-vision.png)
+
+### Learning Journey
+
+![Learning areas: choose an area to see what children do and how it helps](docs/screenshots/learning-journey-areas.png)
+
+### Admissions
+
+![Admissions page: "Your Child's Next Little Adventure Starts Here."](docs/screenshots/admissions.png)
+
+![Enquiry form confirmation stating it is a demonstration and nothing was sent](docs/screenshots/admissions-demo-confirmation.png)
+
+### Gallery
+
+![Gallery full-screen viewer with previous, next and close controls](docs/screenshots/gallery-viewer.png)
+
+### Contact
+
+![Contact page with large tap-to-call buttons for both school numbers](docs/screenshots/contact.png)
+
+### On a phone
+
+<p>
+  <img src="docs/screenshots/phone-home.png" width="260" alt="Home page on a phone">
+  <img src="docs/screenshots/phone-menu.png" width="260" alt="Phone menu open with all pages and call buttons">
+  <img src="docs/screenshots/phone-enquiry-form.png" width="260" alt="Parent enquiry form on a phone">
+</p>
+
 ## Run it locally
 
 Requires Node.js 20.9 or later.
